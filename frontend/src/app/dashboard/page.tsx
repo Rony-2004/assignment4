@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Loader2, BookOpen, Users, Edit, GraduationCap } from 'lucide-react';
 import Link from 'next/link';
+import { Enrollment } from '@/types';
 
 export default function DashboardPage() {
   const { user, isAuthenticated } = useAuthStore();
@@ -52,14 +53,14 @@ export default function DashboardPage() {
 
   const enrollments = data?.enrollments || [];
   const userEnrollments = enrollments.filter(
-    (enrollment: any) => enrollment.user.id === user?.id
+    (enrollment: Enrollment) => enrollment.user.id === user?.id
   );
 
   const studentCourses = userEnrollments.filter(
-    (enrollment: any) => enrollment.role === 'student'
+    (enrollment: Enrollment) => enrollment.role === 'student'
   );
   const professorCourses = userEnrollments.filter(
-    (enrollment: any) => enrollment.role === 'professor'
+    (enrollment: Enrollment) => enrollment.role === 'professor'
   );
 
   const getLevelColor = (level: string) => {
@@ -98,7 +99,7 @@ export default function DashboardPage() {
           {studentCourses.length === 0 ? (
             <div className="text-center py-8">
               <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600 mb-4">You're not enrolled in any courses as a student yet.</p>
+              <p className="text-gray-600 mb-4">You&apos;re not enrolled in any courses as a student yet.</p>
               <Link
                 href="/"
                 className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
@@ -108,7 +109,7 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {studentCourses.map((enrollment: any) => (
+              {studentCourses.map((enrollment: Enrollment) => (
                 <div key={enrollment.id} className="border rounded-lg p-4">
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="font-medium text-gray-900">{enrollment.course.title}</h3>
@@ -139,7 +140,7 @@ export default function DashboardPage() {
           {professorCourses.length === 0 ? (
             <div className="text-center py-8">
               <Edit className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600 mb-4">You're not teaching any courses yet.</p>
+              <p className="text-gray-600 mb-4">You&apos;re not teaching any courses yet.</p>
               <Link
                 href="/"
                 className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
@@ -149,7 +150,7 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {professorCourses.map((enrollment: any) => (
+              {professorCourses.map((enrollment: Enrollment) => (
                 <div key={enrollment.id} className="border rounded-lg p-4">
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="font-medium text-gray-900">{enrollment.course.title}</h3>
