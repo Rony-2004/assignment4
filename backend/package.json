@@ -4,8 +4,8 @@
   "description": "EdTech GraphQL API with Prisma + Neon",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server-prisma.js",
-    "dev": "nodemon src/server-prisma.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",

@@ -1,0 +1,36 @@
+services:
+  # Backend GraphQL API
+  - type: web
+    name: edtech-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install && npx prisma generate
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: https://edtech-frontend.onrender.com
+      - key: GRAPHQL_PATH
+        value: /graphql
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+
+  # Frontend Next.js App
+  - type: web
+    name: edtech-frontend
+    env: node
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_GRAPHQL_URL
+        value: https://edtech-backend.onrender.com/graphql
+      - key: NEXT_PUBLIC_APP_URL
+        value: https://edtech-frontend.onrender.com 
