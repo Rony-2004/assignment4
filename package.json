@@ -1,0 +1,20 @@
+{
+  "name": "edtech-platform",
+  "version": "1.0.0",
+  "description": "EdTech Platform with Next.js and GraphQL",
+  "scripts": {
+    "setup": "node -e \"const fs=require('fs');const path=require('path');['backend','frontend'].forEach(dir=>{const envFile=path.join(dir,'.env');const exampleFile=path.join(dir,'env.example');if(!fs.existsSync(envFile)&&fs.existsSync(exampleFile)){fs.copyFileSync(exampleFile,envFile);console.log(`✅ Created ${envFile}`);}else{console.log(`ℹ️  ${envFile} already exists`);}});console.log('🎉 Environment setup complete!');\"",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": ["edtech", "nextjs", "graphql", "typescript"],
+  "author": "",
+  "license": "MIT"
+} 

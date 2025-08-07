@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: edtech-backend
+    env: node
+    buildCommand: npm install && npx prisma generate
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: https://your-frontend-app.vercel.app
+      - key: GRAPHQL_PATH
+        value: /graphql
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true 
