@@ -8,7 +8,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: CORS_ORIGIN
-        value: https://your-frontend-app.vercel.app
+        value: https://your-vercel-frontend-domain.vercel.app
       - key: GRAPHQL_PATH
         value: /graphql
       - key: DATABASE_URL
