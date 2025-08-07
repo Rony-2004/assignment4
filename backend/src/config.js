@@ -9,7 +9,7 @@ const config = {
   dbPath: process.env.DB_PATH || './src/edtech.db',
   
   // CORS Configuration
-  corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  corsOrigin: process.env.CORS_ORIGIN || '*',
   
   // GraphQL Configuration
   graphqlPath: process.env.GRAPHQL_PATH || '/graphql',
